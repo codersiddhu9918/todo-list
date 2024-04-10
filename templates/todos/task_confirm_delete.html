@@ -1,0 +1,9 @@
+
+<form method="POST">
+  {% csrf_token %}
+  <p>
+    are you sure want to delete
+    <a href ="{% url 'tasks' %}">go back</a>
+    <input type="submit" value="delete">
+  </p>
+</form>

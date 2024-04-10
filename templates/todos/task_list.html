@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="{% static "todos/style.css" %}" rel= "stylesheet">
+    <style>
+        body{
+            text-align: center;
+            background-color: aquamarine;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        #head{
+            transition: width 2s, height 4s;
+            font-size: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: oblique;
+        }p{
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <p justify="centre"> {{request.user}}</p>
+    <form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+        {% if tasks.count is 0 %}
+        <p> {{request.user}} has no item in the list </p>
+        {% endif %}
+</form>
+
+
+{% else %}
+<a href="{% url "login" %}">login</a>
+{% endif %}
+<p justify="centre"> {{request.user}}</p>
+<p id="head"> <u>Todo list items</u></p>
+<a href="{% url  'task_create' %}">add task</a>
+
+    {% for i in tasks %}
+    <p>
+
+            <form action="" method = "POST" >
+                {% csrf_token %}
+                {{i.title}} <a href ="{% url 'task' i.id %}">view</a>
+                 <a href ="{% url 'task_edit' i.id %}">edit</a>
+                <a href ="{% url 'task_delete' i.id %}">delete</a>
+            <button id="button"type="submit"> delete </button>
+            </form>
+    </p>
+
+
+    {% endfor %}
+
+</body>
+</html>
+
+

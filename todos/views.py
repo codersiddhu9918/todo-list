@@ -1,6 +1,4 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,HttpRequest
-# from .models import Todo, user_login
 from django.views.generic.list import ListView
 from .models import Task
 from django.views.generic.detail import DetailView
@@ -19,36 +17,6 @@ class customLogin(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('tasks')
-# def todo_list(request):
-#     x = {'item': Todo.objects.all()}
-#     return render(request, 'todos/todo_list.html', x)
-# def insert_todo_items(request:HttpRequest):
-#     todo = Todo(content = request.POST['content'])
-#     todo.save()
-#     return redirect('main')
-# def delete_todo_items(request,todo_id):
-#     todoid = Todo.objects.get(id=todo_id)
-#     todoid.delete()
-#     return redirect('main')
-
-# def us_login(request):
-#     if request.method=="POST":
-#         user = request.POST['user']
-#         upass = request.POST['upass']
-#         print(user,upass)
-#         res = user_login.objects.filter(user=user,upass=upass)
-#         print(res)
-#
-#         if len(res) == 1:
-#             request.session['user'] = res[0].user
-#             return redirect('main')
-#         else:
-#             return render(request, 'todos/login.html', {'error': 'Username or Password Incorrect!!!'})
-#
-# def ulogin(request):
-#     return render(request,'todos/login.html')
-
-
 class TaskList(LoginRequiredMixin,ListView):
     model = Task
     context_object_name = 'tasks'

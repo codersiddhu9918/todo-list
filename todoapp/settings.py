@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-# import dj_database_url
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,14 +78,8 @@ WSGI_APPLICATION = 'todoapp.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todoappcopy',
-        'USER': 'postgres',
-        'PASSWORD': 9918410452,
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default':dj_database_url.parse('postgres://pgtodo_user:2P1XeyP3BWVbAANN3F5t4aVPJaNIRPcb@dpg-cnbjst7109ks7396ro8g-a/pgtodo')
+    
 }
 
 # DATABASES = {

@@ -20,15 +20,26 @@
             font-size: 40px;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-style: oblique;
-        }p{
+        }
+        p{
             align-items: center;
             flex-direction: column;
+        }
+        .username{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            background-color: green;
+            color: #fff;
         }
     </style>
 </head>
 <body>
+<p id="head"> <u>Todo list items</u></p>
 {% if request.user.is_authenticated %}
-    <p justify="centre"> {{request.user}}</p>
+    <div class="username">{{request.user}}</div>
+
     <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
@@ -42,7 +53,6 @@
 <a href="{% url "login" %}">login</a>
 {% endif %}
 <p justify="centre"> {{request.user}}</p>
-<p id="head"> <u>Todo list items</u></p>
 <a href="{% url  'task_create' %}">add task</a>
 
     {% for i in tasks %}

@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'todoapp.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default':dj_database_url.parse('postgresql://todo_list_0cdx_user:S9ktc8g6I7QchoSbBe6FTvWLknjk4jOr@dpg-cqrq8rggph6c73a3sru0-a.singapore-postgres.render.com/todo_list_0cdx')
+    'default':dj_database_url.parse('postgresql://todo_list_1pgm_user:M2P0mtcWgq5yS0eaUKFXgpnXChb5OIEz@dpg-cqrrdcogph6c73a4ei40-a.oregon-postgres.render.com/todo_list_1pgm')
 
 }
 # DATABASES = {

@@ -33,6 +33,13 @@
             background-color: green;
             color: #fff;
         }
+        .log_out_button{
+           position:absolute;
+           right:30px;
+           padding :5px;
+           top:40px;
+           background-color:aquamarine;
+        }
     </style>
 </head>
 <body>
@@ -41,35 +48,30 @@
     <div class="username">{{request.user}}</div>
 
     <form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Log Out</button>
-        {% if tasks.count is 0 %}
-        <p> {{request.user}} has no item in the list </p>
-        {% endif %}
-</form>
+    {% csrf_token %}
+    <button class="log_out_button" type="submit">Log Out</button>
+            {% if tasks.count is 0 %}
+                <p> {{request.user}} has no item in the list </p>
+            {% endif %}
+    </form>
 
 
 {% else %}
 <a href="{% url "login" %}">login</a>
 {% endif %}
-<p justify="centre"> {{request.user}}</p>
 <a href="{% url  'task_create' %}">add task</a>
 
     {% for i in tasks %}
     <p>
-
-            <form action="" method = "POST" >
-                {% csrf_token %}
-                {{i.title}} <a href ="{% url 'task' i.id %}">view</a>
-                 <a href ="{% url 'task_edit' i.id %}">edit</a>
-                <a href ="{% url 'task_delete' i.id %}">delete</a>
-            <button id="button"type="submit"> delete </button>
-            </form>
+        <form action="" method = "POST" >
+            {% csrf_token %}
+            {{i.title}}
+            <a href ="{% url 'task' i.id %}"><button>View</button></a>
+            <a href ="{% url 'task_edit' i.id %}"><button>Edit</button></a>
+            <a href ="{% url 'task_delete' i.id %}"><button>Delete</button></a>
+        </form>
     </p>
-
-
     {% endfor %}
-
 </body>
 </html>
 

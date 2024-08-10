@@ -39,15 +39,15 @@
 
     {% for i in item %}   
     <p>
-        
+
             <form action="{% url "delete" i.id %}" method = "POST" >
                 {% csrf_token %}
                 {{i.content}}
             <button id="button"type="submit"> delete </button>
             </form>
     </p>
-            
-        
+
+
     {% endfor %}
 
 </body>

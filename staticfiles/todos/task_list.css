@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+header {
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    padding: 10px;
+    text-align: center;
+    background-color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+nav .username {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+nav a, nav button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover, nav a:hover {
+    background-color: #2980b9;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.button-link {
+    background-color: #e67e22;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #d35400;
+}
+
+form button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #229954;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+nav a, nav button,
+.button-link,
+form button,
+.add-task-button {
+    background-color: #3498db; /* Uniform button color */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+nav a:hover, nav button:hover,
+.button-link:hover,
+form button:hover,
+.add-task-button:hover {
+    background-color: #2980b9; /* Hover effect color */
+}

@@ -1,7 +1,72 @@
-<h1>Register</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Register">
-</form>
-<p> if you have an account <a href="{% url 'login' %}">Login</a>here</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="{% static 'todos/registration.css' %}" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="register-container">
+            <h1>Register</h1>
+
+            <!-- Password Requirements Section -->
+            <div class="password-requirements">
+                <h2>Password Requirements</h2>
+                <ul>
+                    <li>Your password must be at least 8 characters long.</li>
+                    <li>Your password cannot be too similar to your other personal information.</li>
+                    <li>Your password cannot be a commonly used password.</li>
+                    <li>Your password cannot be entirely numeric.</li>
+                </ul>
+            </div>
+
+            <!-- Registration Form -->
+            <form method="POST" class="register-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="error-message">
+                            {% for error in form.username.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <div class="error-message">
+                            {% for error in form.password1.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="error-message">
+                            {% for error in form.password2.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <input type="submit" value="REGISTER" class="register-button">
+            </form>
+            <p class="login-redirect">Already have an account? <a href="{% url 'login' %}" class="login-link">Login here</a>.</p>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,1 +1,27 @@
-<h1>Task:{{task}} </h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+
+    <link href="{% static 'todos/task.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Task: {{ task.title }}</h1>
+        </header>
+        <section class="task-details">
+            <p><strong>Description:</strong> {{ task.description }}</p>
+            <p><strong>Created:</strong> {{ task.created }}</p>
+            <p><strong>Completed:</strong> {{ task.complete }}</p>
+            <!-- Add more task details as needed -->
+        </section>
+        <footer>
+            <a href="{% url 'tasks' %}" class="button">Back to Task List</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -3,76 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="{% static "todos/style.css" %}" rel= "stylesheet">
-    <style>
-        body{
-            text-align: center;
-            background-color: aquamarine;
-            margin-left: 5%;
-            margin-top: 5%;
-        }
-        #head{
-            transition: width 2s, height 4s;
-            font-size: 40px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-style: oblique;
-        }
-        p{
-            align-items: center;
-            flex-direction: column;
-        }
-        .username{
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 10px;
-            background-color: green;
-            color: #fff;
-        }
-        .log_out_button{
-           position:absolute;
-           right:30px;
-           padding :5px;
-           top:40px;
-           background-color:aquamarine;
-        }
-    </style>
+    <title>Todo List</title>
+    <link href="{% static 'todos/task_list.css' %}" rel="stylesheet">
 </head>
 <body>
-<p id="head"> <u>Todo list items</u></p>
-{% if request.user.is_authenticated %}
-    <div class="username">{{request.user}}</div>
+    <header>
+        <h1>Todo List Items</h1>
+    </header>
 
-    <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button class="log_out_button" type="submit">Log Out</button>
-            {% if tasks.count is 0 %}
-                <p> {{request.user}} has no item in the list </p>
+    <nav>
+        {% if request.user.is_authenticated %}
+            <div class="username">Welcome, {{ request.user }}</div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="log-out-button" type="submit">Log Out</button>
+            </form>
+            {% if tasks.count == 0 %}
+                <p>{{ request.user }} has no items in the list.</p>
             {% endif %}
-    </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
 
+    <main>
+        {% for i in tasks %}
+            <div class="task-item">
+                <p>{{ i.title }}</p>
+                <div class="button-container">
+                    <a href="{% url 'task' i.id %}" class="button-link">View</a>
+                    <a href="{% url 'task_edit' i.id %}" class="button-link">Edit</a>
+                    <form method="POST" action="{% url 'task_delete' i.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="button-link">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </main>
 
-{% else %}
-<a href="{% url "login" %}">login</a>
-{% endif %}
-<a href="{% url  'task_create' %}">add task</a>
-
-    {% for i in tasks %}
-    <p>
-        <form action="" method = "POST" >
-            {% csrf_token %}
-            {{i.title}}
-            <a href ="{% url 'task' i.id %}"><button>View</button></a>
-            <a href ="{% url 'task_edit' i.id %}"><button>Edit</button></a>
-            <a href ="{% url 'task_delete' i.id %}"><button>Delete</button></a>
-        </form>
-    </p>
-    {% endfor %}
+    <footer>
+        <a href="{% url 'task_create' %}"><button class="add-task-button">Add Task</button></a>
+    </footer>
 </body>
 </html>
-
-
